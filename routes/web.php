@@ -2,18 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
+// CRUD for main model Movie
 Route::get('/', [App\Http\Controllers\MovieController::class, 'index'])->name('movie.index');
 Route::get('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie.show');
 
@@ -26,6 +17,17 @@ Route::put('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'upd
 Route::delete('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'destroy'])->name('movie.destroy');
 
 
+
+// CRUD for model Type
+Route::get('/types', [App\Http\Controllers\TypeController::class, 'index'])->name('type.index');
+
+Route::get('/types/create', [App\Http\Controllers\TypeController::class, 'create'])->name('type.create');
+Route::post('/types', [App\Http\Controllers\TypeController::class, 'store'])->name('type.store');
+
+Route::get('/types/{type}/edit', [App\Http\Controllers\TypeController::class, 'edit'])->name('type.edit');
+Route::put('/types/{type}', [App\Http\Controllers\TypeController::class, 'update'])->name('type.update');
+
+Route::delete('/types/{type}', [App\Http\Controllers\TypeController::class, 'destroy'])->name('type.destroy');
 
 // Auth::routes();
 
