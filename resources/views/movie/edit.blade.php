@@ -70,6 +70,21 @@
     @enderror
   </select>
 
+<select class="form-select" multiple aria-label="multiple select example" name="tags[]">
+    @foreach($tags as $tag)
+        <option 
+        @foreach($movie->tags as $movieTag)
+        {{ $tag->id == $movieTag->id ? 'selected' : ''}}
+        @endforeach
+        value="{{ $tag->id }}">{{$tag->title}}</option>
+    @endforeach
+    
+    @error('tags')
+    <p class="text-danger">{{ $message}}</p>
+    @enderror
+  </select>
+
+
 <div class="mb-3">
   <label for="description" class="form-label">Description</label>
   <textarea class="form-control" id="description" placeholder="description" name="description">{{ $movie->description }}</textarea>

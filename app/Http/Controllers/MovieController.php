@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\MovieTag;
+use App\Models\Tag;
 use App\Models\Type;
 
 
@@ -16,21 +18,30 @@ class MovieController extends Controller
 
     public function create() {
         $types = Type::all(); 
-        return view('movie.create', compact('types'));
+        $tags = Tag::all();
+        return view('movie.create', compact('types', 'tags'));
     }
 
     public function store() {
         $data = request()->validate([
             'title_ua' => 'required|string|max:255',
             'title_original' => 'required|string|max:255',
-            'year' => 'required|integer|min:1900|max:'.(date('Y')),
+            'year' => 'required|integer|min:1899|max:'.(date('Y')),
             //'image_path' => 'image|mimes:jpg,png,jpeg,svg|max:2048',
             'link_1' => 'required|string|max:255',
             'link_2' => 'string|max:255',
             'description' => 'required|string|max:500',
             'type_id' => 'required|integer',
+            'tags' => '',
         ]);
-        Movie::create($data);
+
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $movie = Movie::create($data);
+
+        $movie->tags()->attach($tags);
+
         return redirect()->route('movie.index');
     }
 
@@ -45,7 +56,8 @@ class MovieController extends Controller
 
     public function edit(Movie $movie) {
         $types = Type::all(); 
-        return view('movie.edit', compact('movie','types'));
+        $tags = Tag::all();
+        return view('movie.edit', compact('movie','types', 'tags'));
     }
 
     public function update(Movie $movie) {
@@ -58,9 +70,15 @@ class MovieController extends Controller
             'link_2' => 'string|max:255',
             'description' => 'required|string|max:500',
             'type_id' => 'required|integer',
+            'tags' => '',
         ]);
 
+        $tags = $data['tags'];
+        unset($data['tags']);
+
         $movie->update($data);
+        $movie->tags()->sync($tags);
+        
         return redirect()->route('movie.show', $movie->id);
     }
 }

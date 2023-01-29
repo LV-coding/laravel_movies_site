@@ -1,14 +1,20 @@
 @extends('layouts.app')
 @section('content')
 
-{{$movie->title_ua}}
-{{$movie->title_original}}
-{{$movie->year}}
-{{$movie->image_path}}
-{{$movie->link_1}}
-{{$movie->link_2}}
-{{$movie->type->title}}
-{{$movie->description}}
+
+<div>Title: {{$movie->title_ua}}</div>
+<div>Title original: {{$movie->title_original}}
+<div>Year: {{$movie->year}}</div>
+<div>{{$movie->image_path}}</div>
+<div>Mirror:{{$movie->link_1}}</div>
+<div>Alr mirror: {{$movie->link_2}}</div>
+<div>Type: {{$movie->type->title}}</div>
+<div>Tags: @foreach($movie->tags as $tag)
+                {{ $tag->title }}, 
+           @endforeach
+
+</div>
+<div>Description: {{$movie->description}}</div>
 
 <div>
 

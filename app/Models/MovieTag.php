@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class MovieTag extends Model
 {
     use HasFactory;
-    protected $table = 'tags';
+    protected $table = 'movie_tag';
     protected $guarded = [];
-
-    public function tags() {
-        return $this->belongsToMany(Movie::class);
-    }
 }
