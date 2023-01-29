@@ -41,6 +41,9 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ route('type.create')}}">Add new type</a></li>
             <li><a class="dropdown-item" href="{{ route('type.index')}}">Types</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ route('tag.create')}}">Add new tag</a></li>
+            <li><a class="dropdown-item" href="{{ route('tag.index')}}">Tags</a></li>
           </ul>
         </li>
         <li class="nav-item">
