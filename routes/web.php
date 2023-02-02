@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 // CRUD for main model Movie
-Route::get('/', [App\Http\Controllers\MovieController::class, 'index'])->name('movie.index');
+Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movie.index');
 
 Route::get('/movies/create', [App\Http\Controllers\MovieController::class, 'create'])->name('movie.create');
-Route::post('/', [App\Http\Controllers\MovieController::class, 'store'])->name('movie.store');
+Route::post('/movies', [App\Http\Controllers\MovieController::class, 'store'])->name('movie.store');
 
 Route::get('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie.show');
 
@@ -49,4 +51,3 @@ Route::delete('/tags/{tag}', [App\Http\Controllers\TagController::class, 'destro
 
 // Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

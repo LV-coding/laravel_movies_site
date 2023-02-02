@@ -13,7 +13,7 @@ use App\Models\Type;
 class MovieController extends Controller
 {
     public function index() {
-        $movies = Movie::orderBy('id', 'DESC')->limit(3)->get();
+        $movies = Movie::orderBy('id', 'DESC')->paginate(20);
         return view('movie.index', compact('movies'));
     }
 
