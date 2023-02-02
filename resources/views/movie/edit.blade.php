@@ -58,7 +58,9 @@
   @enderror
 </div>
 
-<select class="form-select" aria-label="Default select example" name="type_id" >
+<div class="mb-3">
+  <label for="form_select_single" class="form-label">Type</label>
+<select class="form-select" aria-label="Default select example" name="type_id" id="form_select_single">
     @foreach($types as $type)
     <option 
     {{ $type->id == $movie->type->id ? 'selected' : ''}}
@@ -69,8 +71,11 @@
     <p class="text-danger">{{ $message}}</p>
     @enderror
   </select>
+</div>
 
-<select class="form-select" multiple aria-label="multiple select example" name="tags[]">
+<div class="mb-3">
+  <label for="form_select_multiple" class="form-label">Tags</label>
+<select class="form-select" multiple aria-label="multiple select example" name="tags[]" id="form_select_multiple">
     @foreach($tags as $tag)
         <option 
         @foreach($movie->tags as $movieTag)
@@ -83,7 +88,7 @@
     <p class="text-danger">{{ $message}}</p>
     @enderror
   </select>
-
+</div>
 
 <div class="mb-3">
   <label for="description" class="form-label">Description</label>

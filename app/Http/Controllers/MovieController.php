@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieRequest;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\MovieTag;
@@ -22,18 +23,8 @@ class MovieController extends Controller
         return view('movie.create', compact('types', 'tags'));
     }
 
-    public function store() {
-        $data = request()->validate([
-            'title_ua' => 'required|string|max:255',
-            'title_original' => 'required|string|max:255',
-            'year' => 'required|integer|min:1899|max:'.(date('Y')),
-            //'image_path' => 'image|mimes:jpg,png,jpeg,svg|max:2048',
-            'link_1' => 'required|string|max:255',
-            'link_2' => 'string|max:255',
-            'description' => 'required|string|max:500',
-            'type_id' => 'required|integer',
-            'tags' => '',
-        ]);
+    public function store(MovieRequest $request) {
+        $data = $request->validated();
 
         $tags = $data['tags'];
         unset($data['tags']);
@@ -60,18 +51,8 @@ class MovieController extends Controller
         return view('movie.edit', compact('movie','types', 'tags'));
     }
 
-    public function update(Movie $movie) {
-        $data = request()->validate([
-            'title_ua' => 'required|string|max:255',
-            'title_original' => 'required|string|max:255',
-            'year' => 'required|integer|min:1900|max:'.(date('Y')),
-            //'image_path' => 'image|mimes:jpg,png,jpeg,svg|max:2048',
-            'link_1' => 'required|string|max:255',
-            'link_2' => 'string|max:255',
-            'description' => 'required|string|max:500',
-            'type_id' => 'required|integer',
-            'tags' => '',
-        ]);
+    public function update(MovieRequest $request, Movie $movie) {
+        $data = $request->validated();
 
         $tags = $data['tags'];
         unset($data['tags']);
