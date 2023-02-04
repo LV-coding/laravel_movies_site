@@ -1,23 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Movie;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // CRUD for main model Movie
-Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movie.index');
+//Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])->name('movie.index');
 
-Route::get('/movies/create', [App\Http\Controllers\MovieController::class, 'create'])->name('movie.create');
-Route::post('/movies', [App\Http\Controllers\MovieController::class, 'store'])->name('movie.store');
+Route::get('/movies', App\Http\Controllers\Movie\IndexController::class)->name('movie.index');
 
-Route::get('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'show'])->name('movie.show');
+Route::get('/movies/create', App\Http\Controllers\Movie\CreateController::class)->name('movie.create');
+Route::post('/movies', App\Http\Controllers\Movie\StoreController::class)->name('movie.store');
 
-Route::get('/movies/{movie}/edit', [App\Http\Controllers\MovieController::class, 'edit'])->name('movie.edit');
-Route::put('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'update'])->name('movie.update');
+Route::get('/movies/{movie}', App\Http\Controllers\Movie\ShowController::class)->name('movie.show');
 
-Route::delete('/movies/{movie}', [App\Http\Controllers\MovieController::class, 'destroy'])->name('movie.destroy');
+Route::get('/movies/{movie}/edit', App\Http\Controllers\Movie\EditController::class)->name('movie.edit');
+Route::put('/movies/{movie}', App\Http\Controllers\Movie\UpdateController::class)->name('movie.update');
+
+Route::delete('/movies/{movie}', App\Http\Controllers\Movie\DestroyController::class)->name('movie.destroy');
 
 
 
