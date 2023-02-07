@@ -28,7 +28,29 @@
 
 <div  class="mb-3">
 @foreach($movies as $movie)
-<div><a href="{{ route('movie.show', $movie->id) }}">{{ $movie->title_ua }}</a></div>
+
+
+<div class="card mb-3" style="max-width: 800px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ $movie->image_path }}" class="img-fluid rounded-start" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+            <a href="{{ route('movie.show', $movie->id) }}"><h5 class="card-title">{{ $movie->title_ua }}</h5></a>
+          <p class="card-text">
+            Year: {{ $movie->year }}<br>
+            Type: {{ $movie->type->title }}<br>
+            Tags: @foreach($movie->tags as $tag)
+                  {{ $tag->title }}, 
+                  @endforeach
+            </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endforeach
 </div>
 

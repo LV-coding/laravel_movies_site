@@ -3,28 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Movie;
 
 class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void 
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
-     * Show the application dashboard.
+     * Show the application dashboard. C:/xampp/php/php.exe
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $movies = Movie::orderBy('id', 'DESC')->limit(3)->get();
-        return view('home', compact('movies'));
+        return view('home');
     }
 }

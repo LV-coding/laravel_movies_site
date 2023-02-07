@@ -20,35 +20,50 @@
     <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">MovieViewer</a>
+    <a class="navbar-brand" href="{{ route('index')}}">MovieViewer</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('home')}}">Home</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('movie.index')}}">Movies</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('movie.create')}}">Add new movie</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ route('type.create')}}">Add new type</a></li>
-            <li><a class="dropdown-item" href="{{ route('type.index')}}">Types</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{ route('tag.create')}}">Add new tag</a></li>
-            <li><a class="dropdown-item" href="{{ route('tag.index')}}">Tags</a></li>
-          </ul>
-        </li>
+@auth
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{{ route('home')}}">Home</a>
+</li>
+@endauth
+@guest
+@if (Route::has('login'))
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+</li>
+@endif
+
+@if (Route::has('register'))
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+</li>
+@endif
+@endguest
+
+@can('view', auth()->user())
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Admin
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="{{ route('movie.create')}}">Add new movie</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="{{ route('type.create')}}">Add new type</a></li>
+    <li><a class="dropdown-item" href="{{ route('type.index')}}">Types</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="{{ route('tag.create')}}">Add new tag</a></li>
+    <li><a class="dropdown-item" href="{{ route('tag.index')}}">Tags</a></li>
+  </ul>
+</li>
+@endcan
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
