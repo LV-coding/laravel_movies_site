@@ -32,7 +32,7 @@ class MovieRequest extends FormRequest
             'link_2' => 'string|max:255',
             'description' => 'required|string|max:500',
             'type_id' => 'required|integer',
-            'tags' => '',
+            'tags.*' => 'integer',
         ];
     }
 }

@@ -25,7 +25,7 @@ class IndexController extends Controller
 
         $types = Type::all();
         $tags = Tag::all();
-        $movies = $query->paginate(20); 
+        $movies = $query->orderBy('id', 'DESC')->paginate(20); 
         return view('movie.index', compact('movies', 'types', 'tags'));
     }
 }

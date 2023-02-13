@@ -6,10 +6,6 @@ use App\Http\Controllers\Movie;
 
 Route::get('/', App\Http\Controllers\IndexController::class)->name('index');
 
-
-Route::get('/movies', App\Http\Controllers\Movie\IndexController::class)->name('movie.index');
-Route::get('/movies/{movie}', App\Http\Controllers\Movie\ShowController::class)->name('movie.show');
-
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('/movies/create', App\Http\Controllers\Movie\CreateController::class)->name('movie.create');
@@ -44,6 +40,10 @@ Route::group(['middleware' => 'admin'], function() {
 
     Route::delete('/tags/{tag}', [App\Http\Controllers\TagController::class, 'destroy'])->name('tag.destroy');
 });
+
+
+Route::get('/movies', App\Http\Controllers\Movie\IndexController::class)->name('movie.index');
+Route::get('/movies/{movie}', App\Http\Controllers\Movie\ShowController::class)->name('movie.show');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

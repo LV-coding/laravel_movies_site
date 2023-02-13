@@ -25,7 +25,7 @@ class MovieFilterRequest extends FormRequest
     {
         return [
             'type_id' => 'integer',
-            'tags' => '',
+            'tags.*' => 'integer',
         ];
     }
 }

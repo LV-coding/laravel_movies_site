@@ -26,11 +26,13 @@
     </form>    
 </div>
 
-<div  class="mb-3">
+<div  class="mb-3  d-flex flex-row flex-wrap">
+
+
 @foreach($movies as $movie)
 
 
-<div class="card mb-3" style="max-width: 800px;">
+<div class="card mb-3" style="max-width: 600px;">
     <div class="row g-0">
       <div class="col-md-4">
         <img src="{{ $movie->image_path }}" class="img-fluid rounded-start" alt="">
