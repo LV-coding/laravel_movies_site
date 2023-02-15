@@ -14,7 +14,6 @@ class IndexController extends Controller
     public function __invoke(MovieFilterRequest $request) 
     {
         $data = $request->validated();
-
         $query = Movie::query();
         
         if (isset($data['type_id'])) {
@@ -23,9 +22,23 @@ class IndexController extends Controller
             }
         }
 
+        if (isset($data['sorting'])) {
+            switch($data['sorting']) {
+                case 1: $query->orderBy('likes', 'DESC');
+                case 2: $query->orderBy('likes', 'ASC');
+                case 3: $query->orderBy('id', 'DESC');
+                case 4: $query->orderBy('id', 'ASC');
+            }
+        }
+
+        if(!auth()->user() || !auth()->user()->is_admin) {
+            $query->where('is_published', '1');
+        }
+
+        $sorting_arr =[[1, 'Most popular'], [2, 'Less popular'], [3, 'New on site'], [4, 'Old on site']];
         $types = Type::all();
         $tags = Tag::all();
-        $movies = $query->orderBy('id', 'DESC')->paginate(20); 
-        return view('movie.index', compact('movies', 'types', 'tags'));
+        $movies = $query->paginate(20); 
+        return view('movie.index', compact('movies', 'types', 'tags', 'sorting_arr'));
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\MovieRequest;
 use App\Models\Movie;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class StoreController extends Controller
 {
@@ -19,7 +21,9 @@ class StoreController extends Controller
 
             $tags = $data['tags'];
             unset($data['tags']);
-    
+
+            $data['image_path'] = Storage::disk('public')->put('images', $data['image_path']);
+
             $movie = Movie::create($data);
             $movie->tags()->attach($tags);
 
@@ -29,6 +33,6 @@ class StoreController extends Controller
             return redirect()->route('movie.create');
         }   
 
-        return redirect()->route('movie.index');
+        return redirect()->route('movie.show', $movie->id);
     }
 }

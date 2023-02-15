@@ -22,7 +22,7 @@ class MovieFactory extends Factory
             'title_original' => $this->faker->sentence(random_int(3,8)),
             'likes' => random_int(0, 3000),
             'year' => random_int(1901, 2022),
-            'image_path' => $this->faker->imageUrl(),
+            'image_path' => 'images/test.jpg',
             'link_1' => $this->faker->url(),
             'link_2' => $this->faker->url(), 
             'is_published' => random_int(0, 1),

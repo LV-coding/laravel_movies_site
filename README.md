@@ -11,5 +11,4 @@ php artisan createAdmin
 ## Backlog
 - fix UI/UX,
 - add functionality for likes (MtM for User and Movie),
-- add sorting,
 - add searching.

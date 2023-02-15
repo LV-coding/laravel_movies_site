@@ -9,6 +9,10 @@ use App\Models\Movie;
 class ShowController extends Controller
 {
     public function __invoke(Movie $movie) {
-        return view('movie.show', compact('movie'));
+
+        if( $movie->is_published || (auth()->user() && auth()->user()->is_admin)) {
+            return view('movie.show', compact('movie'));
+        }
+        return redirect()-> route('movie.index');
     }
 }

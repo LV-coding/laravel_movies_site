@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form method="post" action="{{ route('movie.update', $movie->id) }}">
+    <form method="post" action="{{ route('movie.update', $movie->id) }}" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="mb-3">
@@ -32,10 +32,11 @@
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
-
+        <div><img src="{{ asset('storage/'.$movie->image_path) }}" alt=""></div>
         <div class="input-group mb-3">
+            
             <label class="input-group-text" for="image_path">Upload</label>
-            <input type="file" class="form-control" id="image_path" name="image_path" value="{{ $movie->image_path }}">
+            <input type="file" class="form-control" id="image_path" name="image_path" value="{{ asset('storage/'.$movie->image_path) }}">
 
             @error('image_path')
                 <p class="text-danger">{{ $message }}</p>
@@ -83,8 +84,10 @@
                 @foreach ($tags as $tag)
                     <option
                         @foreach ($movie->tags as $movieTag)
-        {{ $tag->id == $movieTag->id ? 'selected' : '' }} @endforeach
-                        value="{{ $tag->id }}">{{ $tag->title }}</option>
+                            {{ $tag->id == $movieTag->id ? 'selected' : '' }} 
+                            @endforeach
+                            value="{{ $tag->id }}">{{ $tag->title }}
+                    </option>
                 @endforeach
 
                 @error('tags')

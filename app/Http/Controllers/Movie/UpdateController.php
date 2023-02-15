@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Movie;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MovieRequest;
+use App\Http\Requests\MovieEditRequest;
 use App\Models\Movie;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(MovieRequest $request, Movie $movie) {
+    public function __invoke(MovieEditRequest $request, Movie $movie) {
 
         try {
             DB::beginTransaction();
@@ -19,6 +20,10 @@ class UpdateController extends Controller
             $tags = $data['tags'];
             unset($data['tags']);
 
+            if (isset($data['image_path'])) {
+                $data['image_path'] = Storage::disk('public')->put('images', $data['image_path']);
+            }
+            
             $movie->update($data);
             $movie->tags()->sync($tags);
             DB::commit();

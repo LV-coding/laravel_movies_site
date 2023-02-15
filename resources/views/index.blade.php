@@ -19,7 +19,7 @@
             <a href="{{ route('movie.show', $movie->id) }}">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ $movie->image_path }}" class="d-block w-100" alt="">
+                        <img src="{{ asset('storage/'.$movie->image_path) }}" class="d-block w-100" alt="">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ $movie->title_ua }}</h5>
                             <p>{{ $movie->description }}</p>

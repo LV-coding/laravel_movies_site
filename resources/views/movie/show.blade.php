@@ -1,11 +1,28 @@
 @extends('layouts.app')
 @section('content')
+    <img src="{{ asset('storage/'.$movie->image_path) }}" alt="{{  asset('storage/'.$movie->image_path) }}">
+    {{-- asset('storage/app/'.$movie->image_path) --}}
     <div>Title: {{ $movie->title_ua }}</div>
     <div>Title original: {{ $movie->title_original }}
+
+        @can('view', auth()->user())
+            <div class="d-flex align-items-center">
+                @if ($movie->is_published)
+                    <div class="btn btn-success m-1">published (CHANGE)</div>
+                @else
+                    <div class="btn btn-warning m-1">not published (CHANGE)</div>
+                @endif
+
+                <a href='{{ route('movie.edit', $movie->id) }}' class="btn btn-primary m-1">EDIT</a>
+                <form action="{{ route('movie.destroy', $movie->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="DELETE" class="btn btn-danger m-1">
+                </form>
+            </div>
+        @endcan
+
         <div>Year: {{ $movie->year }}</div>
-        <div>{{ $movie->image_path }}</div>
-        <div>Mirror:{{ $movie->link_1 }}</div>
-        <div>Alr mirror: {{ $movie->link_2 }}</div>
         <div>Type: {{ $movie->type->title }}</div>
         <div>Tags: @foreach ($movie->tags as $tag)
                 {{ $tag->title }},
@@ -14,15 +31,12 @@
         </div>
         <div>Description: {{ $movie->description }}</div>
 
-        <div>
 
-            <form action="{{ route('movie.destroy', $movie->id) }}" method="post">
-                @csrf
-                @method('delete')
-                <input type="submit" value="Delete">
-            </form>
 
+        <div class="ratio ratio-16x9">
+            <iframe src="{{ $movie->link_1 }}" title="Mirror" allowfullscreen></iframe>
         </div>
-
-        <a href='{{ route('movie.edit', $movie->id) }}'>EDIT</a>
+        <div class="ratio ratio-16x9">
+            <iframe src="{{ $movie->link_2 }}" title="Alt mirror" allowfullscreen></iframe>
+        </div>
     @endsection

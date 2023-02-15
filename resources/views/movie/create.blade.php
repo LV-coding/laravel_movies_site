@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form method="post" action="{{ route('movie.store') }}">
+    <form method="post" action="{{ route('movie.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title_ua" class="form-label">Title UA</label>

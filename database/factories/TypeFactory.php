@@ -17,7 +17,7 @@ class TypeFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word(),
+            'title' => $this->faker->sentence(3),
         ];
     }
 }
