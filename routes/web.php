@@ -8,6 +8,7 @@ Route::get('/', App\Http\Controllers\IndexController::class)->name('index');
 
 Route::group(['middleware' => ['auth', 'admin', 'verified']], function() {
 
+    // CRUD for Movie
     Route::get('/movies/create', App\Http\Controllers\Movie\CreateController::class)->name('movie.create');
     Route::post('/movies', App\Http\Controllers\Movie\StoreController::class)->name('movie.store');
 
@@ -39,6 +40,8 @@ Route::group(['middleware' => ['auth', 'admin', 'verified']], function() {
     Route::put('/tags/{tag}', [App\Http\Controllers\TagController::class, 'update'])->name('tag.update');
 
     Route::delete('/tags/{tag}', [App\Http\Controllers\TagController::class, 'destroy'])->name('tag.destroy');
+
+    Route::get('/analitics', App\Http\Controllers\AdminAnaliticController::class)->name('analitic');
 });
 
 

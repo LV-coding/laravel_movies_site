@@ -70,6 +70,10 @@
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('tag.create') }}">Add new tag</a></li>
                                     <li><a class="dropdown-item" href="{{ route('tag.index') }}">Tags</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('analitic') }}">Analitics</a></li>
                                 </ul>
                             </li>
                         @endcan
