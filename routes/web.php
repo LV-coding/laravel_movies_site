@@ -48,5 +48,8 @@ Route::group(['middleware' => ['auth', 'admin', 'verified']], function() {
 Route::get('/movies', App\Http\Controllers\Movie\IndexController::class)->name('movie.index');
 Route::get('/movies/{movie}', App\Http\Controllers\Movie\ShowController::class)->name('movie.show');
 
+Route::post('/like/{movie}', [App\Http\Controllers\LikeController::class, 'storeIndexPage'])->name('movie.like.store');
+Route::post('/like/show/{movie}', [App\Http\Controllers\LikeController::class, 'storeShowPage'])->name('movie.like.store.show');
+
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

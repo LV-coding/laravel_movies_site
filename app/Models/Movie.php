@@ -22,4 +22,8 @@ class Movie extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function likes() {
+        return $this->belongsToMany(User::class, 'movie_user_likes', 'movie_id', 'user_id');
+    }
 }

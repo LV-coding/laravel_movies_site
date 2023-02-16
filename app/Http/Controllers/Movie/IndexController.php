@@ -24,8 +24,8 @@ class IndexController extends Controller
 
         if (isset($data['sorting'])) {
             switch($data['sorting']) {
-                case 1: $query->orderBy('likes', 'DESC');
-                case 2: $query->orderBy('likes', 'ASC');
+                case 1: $query->orderBy('year', 'DESC');
+                case 2: $query->orderBy('year', 'ASC');
                 case 3: $query->orderBy('id', 'DESC');
                 case 4: $query->orderBy('id', 'ASC');
             }
@@ -35,7 +35,7 @@ class IndexController extends Controller
             $query->where('is_published', '1');
         }
 
-        $sorting_arr =[[1, 'Most popular'], [2, 'Less popular'], [3, 'New on site'], [4, 'Old on site']];
+        $sorting_arr =[[1, 'New movies'], [2, 'Old movies'], [3, 'New on site'], [4, 'Old on site']];
         $types = Type::all();
         $tags = Tag::all();
         $movies = $query->paginate(20); 
