@@ -23,7 +23,7 @@
         @endcan
         <small>
             @auth
-                <form action="{{ route('movie.like.store.show', $movie->id) }}" method="POST">
+                <form action="{{ route('movie.like.store', $movie->id) }}" method="POST">
                     @csrf
                     <button type="submit" class="border-0 bg-transparent">
                         @if (auth()->user()->likes->contains($movie->id))

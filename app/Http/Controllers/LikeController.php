@@ -7,13 +7,8 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    public function storeIndexPage(Movie $movie) {
+    public function __invoke(Movie $movie) {
         auth()->user()->likes()->toggle($movie->id);
-        return redirect()->route('movie.index');
-    }
-
-    public function storeShowPage(Movie $movie) {
-        auth()->user()->likes()->toggle($movie->id);
-        return redirect()->route('movie.show', compact('movie'));
+        return redirect()->back();
     }
 }
