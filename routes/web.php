@@ -6,7 +6,7 @@ use App\Http\Controllers\Movie;
 
 Route::get('/', App\Http\Controllers\IndexController::class)->name('index');
 
-Route::group(['middleware' => 'admin'], function() {
+Route::group(['middleware' => ['auth', 'admin']], function() {
 
     Route::get('/movies/create', App\Http\Controllers\Movie\CreateController::class)->name('movie.create');
     Route::post('/movies', App\Http\Controllers\Movie\StoreController::class)->name('movie.store');

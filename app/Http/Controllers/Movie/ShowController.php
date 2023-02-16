@@ -13,6 +13,6 @@ class ShowController extends Controller
         if( $movie->is_published || (auth()->user() && auth()->user()->is_admin)) {
             return view('movie.show', compact('movie'));
         }
-        return redirect()-> route('movie.index');
+        abort(404);
     }
 }

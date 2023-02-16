@@ -13,8 +13,17 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {{ __('You are logged in!') }}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {{ __('You are logged in!') }}
+                            </div>
+                            <div>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="{{ __('Log out!') }}" class="btn btn-warning">
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
