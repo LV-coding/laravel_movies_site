@@ -28,6 +28,7 @@ class CreateAdminCommand extends Command
                     'email' => $email,
                     'password' => Hash::make($password),
                     'is_admin' => 1,
+                    'email_verified_at' => '2000-01-01 00:00:00',
                 ]);
                 $this->info('Admin created!');
             } catch(Exception $ex) {
