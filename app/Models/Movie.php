@@ -13,7 +13,6 @@ class Movie extends Model
     
     protected $table = 'movies';
     protected $guarded = [];
-    // protected $fillable = [];
 
     public function type() {
         return $this->belongsTo(Type::class);

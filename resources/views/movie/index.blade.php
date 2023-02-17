@@ -75,7 +75,8 @@
                                     @guest
                                         <img src="{{ asset('img/without.png') }}" alt="">
                                     @endguest
-                                    {{ $movie->likes->count() }}
+                                    {{ $movie->likes_count }}  
+                                    {{-- через withCount --}}
                                 </small><br>
                                 Year: {{ $movie->year }}<br>
                                 Type: {{ $movie->type->title ?? '' }}<br>

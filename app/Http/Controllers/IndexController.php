@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $movies = Movie::all()->where('is_published', '1')->random(3);
+        $movies = Movie::where('is_published', '1')->get()->random(3);
         return view('index', compact('movies'));
     }
 }

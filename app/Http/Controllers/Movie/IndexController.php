@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function __invoke(MovieFilterRequest $request) 
     {
         $data = $request->validated();
-        $query = Movie::query();
+        $query = Movie::query()->withCount('likes')->with('type', 'tags');
         
         if (isset($data['type_id'])) {
             if ($data['type_id'] != 0) { // 0 its all types

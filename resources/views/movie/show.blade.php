@@ -32,7 +32,8 @@
                             <img src="{{ asset('img/without.png') }}" alt="">
                         @endif
                     </button>
-                    {{ $movie->likes->count() }}
+                    {{ $movie->likes_count }}  
+                    {{-- через withCount --}}
                 </form>
             @endauth
             @guest
