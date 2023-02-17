@@ -92,7 +92,7 @@
             <select class="form-select" multiple aria-label="multiple select example" name="tags[]"
                 id="form_select_multiple">
                 @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags')) ? 'selected' : '' }}>
+                    <option value="{{ $tag->id }}">
                         {{ $tag->title }}</option>
                 @endforeach
 

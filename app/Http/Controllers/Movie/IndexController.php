@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function __invoke(MovieFilterRequest $request) 
     {
         $data = $request->validated();
-        $query = Movie::query()->withCount('likes')->with('type', 'tags');
+        $query = Movie::query();
         
         if (isset($data['type_id'])) {
             if ($data['type_id'] != 0) { // 0 its all types
@@ -38,7 +38,7 @@ class IndexController extends Controller
         $sorting_arr =[[1, 'New movies'], [2, 'Old movies'], [3, 'New on site'], [4, 'Old on site']];
         $types = Type::all();
         $tags = Tag::all();
-        $movies = $query->paginate(20); 
+        $movies = $query->withCount('likes')->with('type', 'tags')->paginate(20); 
         return view('movie.index', compact('movies', 'types', 'tags', 'sorting_arr'));
     }
 }

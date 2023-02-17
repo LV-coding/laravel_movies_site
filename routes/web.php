@@ -50,5 +50,7 @@ Route::get('/movies/{movie}', App\Http\Controllers\Movie\ShowController::class)-
 
 Route::post('/like/{movie}', App\Http\Controllers\LikeController::class)->name('movie.like.store');
 
+Route::get('/search', App\Http\Controllers\SearchMovieController::class)->name('search');
+
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
