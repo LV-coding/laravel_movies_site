@@ -26,6 +26,7 @@ class MovieRequest extends FormRequest
         return [
             'title_ua' => 'required|string|max:255',
             'title_original' => 'required|string|max:255',
+            'is_published' => 'required|integer',
             'year' => 'required|integer|min:1899|max:'.(date('Y')),
             'image_path' => 'required|file',
             'link_1' => 'required|string|max:255',

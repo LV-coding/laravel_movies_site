@@ -8,9 +8,9 @@
         @can('view', auth()->user())
             <div class="d-flex align-items-center">
                 @if ($movie->is_published)
-                    <div class="btn btn-success m-1">published (CHANGE)</div>
+                    <div class="btn btn-success m-1">published</div>
                 @else
-                    <div class="btn btn-warning m-1">not published (CHANGE)</div>
+                    <div class="btn btn-warning m-1">not published</div>
                 @endif
 
                 <a href='{{ route('movie.edit', $movie->id) }}' class="btn btn-primary m-1">EDIT</a>

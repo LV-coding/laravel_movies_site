@@ -23,6 +23,17 @@
         </div>
 
         <div class="mb-3">
+            <label for="is_published" class="form-label">Is published</label>
+            <select class="form-select" aria-label="Default select example" name="is_published" id="is_published">
+                <option selected value="0">Not published</option>
+                <option value="1" {{ old('is_published') == 1 ? 'selected' : '' }}>Published</option>
+                @error('is_published')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="year" class="form-label">Year</label>
             <input type="number" class="form-control" id="year" placeholder="Year" name="year" min="1900"
                 max="2099" step="1" value="{{ old('year') }}">
@@ -81,7 +92,8 @@
             <select class="form-select" multiple aria-label="multiple select example" name="tags[]"
                 id="form_select_multiple">
                 @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                    <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags')) ? 'selected' : '' }}>
+                        {{ $tag->title }}</option>
                 @endforeach
 
                 @error('tags')
