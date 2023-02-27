@@ -1,5 +1,12 @@
 ## About
-Movie site with 1 main and 2 minor models (many to many and foreign key relations). Admin can use CRUD for all models.
+Movies site with 1 main (Movie) and 2 minor models (ForeignKey Type and ManyToMany Tags models). 
+Implemented the function of likes through ManyToMany model Likes.
+
+For models User implemented roles Admin/User. Admin can use CRUD for all models. Ordinary User can only browse list of movies and single movie.
+
+Implemented  functionality for sorting, filtering and searching.
+
+For further development and testing implemented factories.
 
 ## Custom commands
 
@@ -7,7 +14,3 @@ Movie site with 1 main and 2 minor models (many to many and foreign key relation
 # command for creating UserAdmin
 php artisan createAdmin
 ```
-
-## Backlog
-- fix UI/UX,
-- add searching.
